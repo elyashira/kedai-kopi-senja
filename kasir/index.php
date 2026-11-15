@@ -19,10 +19,11 @@ $menus = $stmt->fetchAll();
     <div class="navbar">
         <div class="nav-brand">Kedai Kopi Senja - Kasir</div>
         <div class="nav-menu">
-            <a href="<?= BASEURL ?>/kasir/index.php" class="active">Daftar Menu</a>
+            <a href="<?= BASEURL ?>/kasir/index.php">Daftar Menu</a>
             <a href="<?= BASEURL ?>/kasir/transaksi.php">Buat Pesanan</a>
+            <a href="<?= BASEURL ?>/kasir/manajemen_pesanan.php" class="active">Manajemen Pesanan</a>
             <a href="<?= BASEURL ?>/kasir/reset_password.php">Reset Password Pelanggan</a>
-            <a href="<?= BASEURL ?>/logout.php" class="btn-logout">Logout (<?= htmlspecialchars($_SESSION['nama']) ?>)</a>
+            <a href="<?= BASEURL ?>/logout.php" class="btn-logout">Logout</a>
         </div>
     </div>
 
