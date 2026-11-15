@@ -1,0 +1,435 @@
+
+/* =================================
+   KEDAI KOPI SENJA - KASIR
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.kasir-body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #252a2b;
+    color: #f4f0ed;
+    min-height: 100vh;
+}
+
+.kasir-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+.kasir-header {
+    height: 75px;
+    background: #171b1c;
+    border-bottom: 1px solid #44494a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+}
+
+.kasir-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.kasir-logo {
+    width: 43px;
+    height: 43px;
+    background: #e9a9bd;
+    color: #252a2b;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.kasir-brand strong {
+    display: block;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.kasir-brand small {
+    color: #aaa;
+    font-size: 11px;
+}
+
+.kasir-user {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+}
+
+.kasir-user a {
+    color: #e9a9bd;
+    text-decoration: none;
+}
+
+/* MAIN */
+
+.kasir-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 175px minmax(300px, 1fr) 285px;
+    gap: 15px;
+    padding: 20px;
+    padding-bottom: 25px;
+}
+
+/* SIDEBAR */
+
+.kasir-sidebar {
+    background: #303637;
+    border: 1px solid #484f50;
+    border-radius: 8px;
+    padding: 17px 12px;
+}
+
+.kasir-sidebar h3 {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #aaa;
+    margin-bottom: 17px;
+}
+
+.kategori-btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #eee;
+    text-align: left;
+    padding: 13px 12px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.kategori-btn:hover {
+    background: #41494a;
+}
+
+.kategori-btn.active {
+    background: #e9a9bd;
+    color: #292d2e;
+    font-weight: bold;
+}
+
+/* MENU */
+
+.kasir-menu {
+    min-width: 0;
+}
+
+.kasir-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 12px;
+}
+
+.kasir-menu-header h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.kasir-menu-header p {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.kasir-menu-header input {
+    width: 190px;
+    padding: 11px 13px;
+    border: 1px solid #555d5e;
+    border-radius: 5px;
+    outline: none;
+    background: #303637;
+    color: white;
+}
+
+.kasir-menu-header input:focus {
+    border-color: #e9a9bd;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.menu-card {
+    background: #343b3c;
+    border: 1px solid #4a5253;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.menu-card:hover {
+    border-color: #e9a9bd;
+    transform: translateY(-2px);
+}
+
+.menu-image {
+    height: 125px;
+    background: #454c4d;
+    border-bottom: 1px solid #505758;
+}
+
+.menu-info {
+    padding: 12px;
+}
+
+.menu-category {
+    display: inline-block;
+    color: #e9a9bd;
+    font-size: 10px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+
+.menu-info h3 {
+    font-size: 14px;
+    margin-bottom: 9px;
+    min-height: 17px;
+}
+
+.menu-price {
+    display: block;
+    color: #f3c6d3;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.menu-status {
+    display: inline-block;
+    font-size: 10px;
+    padding: 5px 9px;
+    border-radius: 20px;
+}
+
+.menu-status.tersedia {
+    background: #315b48;
+    color: #b7edcb;
+}
+
+.menu-status.habis {
+    background: #654044;
+    color: #ffc3c3;
+}
+
+/* PANEL PESANAN */
+
+.kasir-order {
+    background: #303637;
+    border: 1px solid #484f50;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.order-header {
+    padding: 18px;
+    border-bottom: 1px solid #484f50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header h3 {
+    font-size: 17px;
+}
+
+.order-header span {
+    color: #e9a9bd;
+    font-size: 11px;
+}
+
+.order-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.order-empty-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px dashed #858d8e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e9a9bd;
+    font-size: 27px;
+    margin-bottom: 13px;
+}
+
+.order-empty strong {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.order-empty p {
+    color: #aaa;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.order-footer {
+    padding: 15px;
+    border-top: 1px solid #484f50;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.btn-buat-pesanan,
+.btn-riwayat {
+    text-decoration: none;
+    text-align: center;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.btn-buat-pesanan {
+    background: #e9a9bd;
+    color: #292d2e;
+}
+
+.btn-buat-pesanan:hover {
+    background: #f3bfd0;
+}
+
+.btn-riwayat {
+    border: 1px solid #747d7e;
+    color: #eee;
+}
+
+.btn-riwayat:hover {
+    background: #41494a;
+}
+
+/* NAVIGASI BAWAH */
+
+.kasir-bottom-nav {
+    background: #171b1c;
+    border-top: 1px solid #484f50;
+    min-height: 68px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+    padding: 10px 20px;
+}
+
+.bottom-nav-item {
+    color: #a9aeaf;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 65px;
+    transition: .2s;
+}
+
+.bottom-nav-item span {
+    font-size: 21px;
+}
+
+.bottom-nav-item small {
+    font-size: 10px;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item.active {
+    color: #e9a9bd;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .kasir-main {
+        grid-template-columns: 145px minmax(250px, 1fr);
+    }
+
+    .kasir-order {
+        grid-column: 1 / -1;
+        min-height: 300px;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .kasir-header {
+        padding: 0 15px;
+    }
+
+    .kasir-main {
+        display: flex;
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .kasir-sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .kasir-sidebar h3 {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .kategori-btn {
+        width: auto;
+        margin: 0;
+    }
+
+    .kasir-menu-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .kasir-menu-header input {
+        width: 100%;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .kasir-bottom-nav {
+        gap: 5px;
+        justify-content: space-around;
+    }
+
+    .bottom-nav-item {
+        min-width: 50px;
+    }
+}
