@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form action="" method="POST">
             <div class="form-group">
-                <label>Nama Staf / Akun</label>
+                <label>Akun</label>
                 <input type="text" name="nama" required>
             </div>
             <div class="form-group">
