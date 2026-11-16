@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
@@ -34,8 +33,6 @@ $kategori = array_unique($kategori);
 <body class="kasir-body">
 
 <div class="kasir-layout">
-
-    <!-- HEADER -->
     <header class="kasir-header">
         <div class="kasir-brand">
             <div class="kasir-logo">KS</div>
@@ -51,10 +48,8 @@ $kategori = array_unique($kategori);
         </div>
     </header>
 
-    <!-- KONTEN UTAMA -->
     <main class="kasir-main">
 
-        <!-- SIDEBAR KATEGORI -->
         <aside class="kasir-sidebar">
             <h3>KATEGORI</h3>
 
@@ -71,7 +66,6 @@ $kategori = array_unique($kategori);
             <?php endforeach; ?>
         </aside>
 
-        <!-- DAFTAR MENU -->
         <section class="kasir-menu">
 
             <div class="kasir-menu-header">
@@ -89,39 +83,28 @@ $kategori = array_unique($kategori);
             </div>
 
             <div class="menu-grid" id="menuGrid">
-
                 <?php if (count($menus) > 0): ?>
-
                     <?php foreach ($menus as $m): ?>
-
                         <?php
                         $bisa_dipesan =
                             $m['status'] === 'Aktif' &&
                             $m['punya_resep'];
                         ?>
-
                         <div class="menu-card"
                              data-kategori="<?= htmlspecialchars($m['kategori']) ?>"
                              data-nama="<?= htmlspecialchars(strtolower($m['nama_menu'])) ?>">
-
-                            <!-- TEMPAT FOTO PRODUK -->
                             <div class="menu-image">
-                                <!-- Foto produk bisa ditambahkan nanti -->
                             </div>
-
                             <div class="menu-info">
                                 <span class="menu-category">
                                     <?= htmlspecialchars($m['kategori']) ?>
                                 </span>
-
                                 <h3>
                                     <?= htmlspecialchars($m['nama_menu']) ?>
                                 </h3>
-
                                 <strong class="menu-price">
                                     Rp <?= number_format($m['harga_jual'], 0, ',', '.') ?>
                                 </strong>
-
                                 <?php if ($bisa_dipesan): ?>
                                     <span class="menu-status tersedia">
                                         Tersedia
@@ -136,52 +119,38 @@ $kategori = array_unique($kategori);
                                     </span>
                                 <?php endif; ?>
                             </div>
-
                         </div>
-
                     <?php endforeach; ?>
-
                 <?php else: ?>
-
                     <p>Belum ada menu yang tersedia.</p>
-
                 <?php endif; ?>
-
             </div>
-
         </section>
 
-        <!-- PANEL PESANAN -->
         <aside class="kasir-order">
-
             <div class="order-header">
                 <h3>Pesanan</h3>
                 <span>Kasir</span>
             </div>
-
             <div class="order-empty">
                 <div class="order-empty-icon">+</div>
                 <strong>Belum ada pesanan</strong>
                 <p>Silakan pilih menu untuk memulai transaksi.</p>
             </div>
-
             <div class="order-footer">
                 <a href="<?= BASEURL ?>/kasir/transaksi.php"
                    class="btn-buat-pesanan">
                     BUAT PESANAN
                 </a>
-
                 <a href="<?= BASEURL ?>/kasir/manajemen_pesanan.php"
                    class="btn-riwayat">
                     LIHAT PESANAN
                 </a>
             </div>
-
         </aside>
-
     </main>
 
-    <!-- NAVIGASI BAWAH -->
+    <!-- navigasi -->
     <footer class="kasir-bottom-nav">
 
         <a href="<?= BASEURL ?>/kasir/index.php" class="bottom-nav-item active">
@@ -245,6 +214,5 @@ function searchMenu() {
     });
 }
 </script>
-
 </body>
 </html>
