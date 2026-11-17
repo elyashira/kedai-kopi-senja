@@ -268,12 +268,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="kasir-layout">
     <header class="kasir-header">
         <div class="kasir-brand">
-            <div class="kasir-logo">KS</div>
-            <div>
                 <strong>KEDAI KOPI SENJA</strong>
-                <small>Point of Sale</small>
             </div>
-        </div>
 
         <div class="kasir-user">
             <span>Kasir</span>
@@ -441,25 +437,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </main>
 
         <footer class="kasir-bottom-nav">
-            <a href="<?= BASEURL ?>/kasir/index.php" class="bottom-nav-item active">
-                <span>⌂</span>
-                <small>Menu</small>
-            </a>
+        <a href="<?= BASEURL ?>/kasir/index.php"
+           class="bottom-nav-item">
+            <span>🏠︎</span>
+            <small>Menu</small>
+        </a>
 
-            <a href="<?= BASEURL ?>/kasir/manajemen_pesanan.php" class="bottom-nav-item">
-                <span>▤</span>
-                <small>Pesanan</small>
-            </a>
+        <a href="<?= BASEURL ?>/kasir/manajemen_pesanan.php"
+           class="bottom-nav-item active">
+            <span>🗒</span>
+            <small>Pesanan</small>
+        </a>
 
-            <a href="<?= BASEURL ?>/kasir/reset_password.php" class="bottom-nav-item">
-                <span>♙</span>
-                <small>Reset Akun</small>
-            </a>
-
-            <a href="<?= BASEURL ?>/logout.php" class="bottom-nav-item">
-                <span>↪</span>
-                <small>Keluar</small>
-            </a>
+        <a href="<?= BASEURL ?>/kasir/reset_password.php"
+           class="bottom-nav-item">
+            <span>⟳</span>
+            <small>Reset Akun</small>
+        </a>
         </footer>
     </form>
 </div>

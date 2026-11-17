@@ -1,235 +1,1048 @@
-/* =====================================
-   PALET WARNA KEDAI KOPI SENJA
-   ===================================== */
+/* =========================================
+   KEDAI KOPI SENJA
+   GLOBAL STYLE
+========================================= */
+
 :root {
-    --espresso: #542916;
-    --eau-trouble: #b79858;
-    --terre-cuite: #a13a1e;
-    --bleu-porcelaine: #88b8ce;
-    --nuage-de-lait: #fefaf0;
-    --miel-dore: #f1c166;
+    --bg-main: #fefaf0;
+    --bg-header: #5a798a;
+    --bg-panel: #ffffff;
+    --bg-card: #f8f1e4;
+    --bg-image: #f1e5d1;
 
-    /* Variabel utama aplikasi */
-    --bg-main: var(--nuage-de-lait);
-    --bg-header: var(--espresso);
-    --bg-panel: #f7f0df;
-    --bg-card: var(--nuage-de-lait);
-    --bg-image: #eee3cb;
+    --primary: #426171;
+    --primary-hover: #426171;
 
-    --primary: var(--terre-cuite);
-    --primary-hover: var(--eau-trouble);
+    --secondary: #b79858;
+    --blue: #88b8ce;
+    --yellow: #f1c166;
 
-    --text-main: var(--espresso);
-    --text-muted: #806b50;
+    --text-main: #542916;
+    --text-muted: #8d7967;
 
-    --success-bg: #e2eee9;
-    --success-text: #315d4b;
-    --danger-bg: #f5e3dc;
-    --danger-text: var(--terre-cuite);
+    --success-bg: #e3eee3;
+    --success-text: #426b46;
 
-    --border: #d9c7a5;
+    --danger-bg: #f8e5df;
+    --danger-text: #a13a1e;
+
+    --border: #e8ddca;
+
+    --shadow: 0 5px 20px rgba(84, 41, 22, 0.07);
+    --radius: 14px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
-/* =====================================
-   HALAMAN KASIR
-   ===================================== */
-.kasir-body {
-    min-height: 100vh;
-    padding-bottom: 100px;
-    background: var(--bg-main);
-    color: var(--text-main);
-    font-family: Arial, Helvetica, sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
-.kasir-layout {
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+
+
+/* =========================================
+   LOGIN - GLASSMORPHISM
+========================================= */
+
+.login-body {
     min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            rgba(35, 23, 15, 0.38),
+            rgba(35, 23, 15, 0.48)
+        ),
+        url("../assets/login-bg.jpg") center center / cover no-repeat fixed;
+
+    color: #fff;
+}
+
+
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+
+    background: transparent;
+}
+
+.login-container::before {
+    display: none;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 410px;
+    padding: 38px 40px;
+
+    background: rgba(255, 250, 240, 0.19);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid var(--primary);
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.login-container h2 {
+    width: 100%;
+    margin: 0 0 9px;
+
+    text-align: center;
+    font-size: 29px;
+    font-weight: 700;
+
+    color: #fffaf0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.login-container > p {
+    width: 100%;
+    margin: 0 0 30px;
+
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 250, 240, 0.9);
+}
+
+.login-container form {
+    width: 100%;
+    padding: 0;
+
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.login-container .form-group {
+    margin-bottom: 24px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 9px;
+
+    font-size: 13px;
+    font-weight: 500;
+    color: #fffaf0;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px 4px;
+
+    border: none;
+    border-bottom: 1.5px solid rgba(255, 250, 240, 0.8);
+    border-radius: 0;
+
+    outline: none;
+    background: transparent;
+
+    color: #fff;
+    font-size: 14px;
+
+    transition: 0.25s;
+}
+
+.login-container input::placeholder {
+    color: rgba(255, 250, 240, 0.65);
+}
+
+.login-container input:focus {
+    border-bottom-color: #f1c166;
+    box-shadow: 0 2px 0 rgba(241, 193, 102, 0.35);
+}
+
+.login-container .btn-primary {
+    width: 100%;
+    margin-top: 5px;
+    padding: 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9px;
+
+    background: #426171;
+    color: #fffaf0;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.login-container .btn-primary:hover {
+    background: #743014;
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.login-container .alert-error {
+    width: 100%;
+    margin-bottom: 18px;
+
+    background: rgba(161, 58, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    color: #fff;
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+
+    .login-body {
+        padding: 15px;
+        background-attachment: scroll;
+    }
+
+    .login-container {
+        padding: 10px;
+    }
+
+    .login-card {
+        max-width: 390px;
+        padding: 32px 25px;
+    }
+
+    .login-container h2 {
+        font-size: 25px;
+    }
+
+}
+
+/* =========================================
+   NAVBAR UMUM
+========================================= */
+
+.navbar {
+    background: var(--bg-header);
+    color: #fff;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav-brand {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-menu a {
+    padding: 10px 13px;
+    text-decoration: none;
+    border-radius: 7px;
+    color: #fefaf0;
+    font-size: 13px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-logout {
+    background: var(--primary);
+}
+
+.container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 30px auto;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-top: -5px;
+}
+
+
+/* =========================================
+   DASHBOARD MANAJER
+========================================= */
+
+.manager-body {
+    min-height: 100vh;
+    background: var(--bg-main);
+}
+
+.manager-shell {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* Sidebar */
+
+.manager-sidebar {
+    width: 230px;
+    min-width: 230px;
+    min-height: 100vh;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 25px 17px;
+    background: var(--bg-header);
+    color: var(--bg-main);
+}
+
+.manager-logo {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    border-radius: 14px;
+    background: var(--primary);
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.manager-logo span {
+    color: var(--yellow);
+}
+
+.manager-side-title {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: var(--yellow);
+}
+
+.manager-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.manager-nav a,
+.manager-logout {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    text-decoration: none;
+    color: #fefaf0;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.manager-nav a:hover,
+.manager-nav a.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+.manager-nav-icon {
+    width: 22px;
+    text-align: center;
+    font-size: 19px;
+}
+
+.manager-logout {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.manager-logout:hover {
+    background: var(--primary);
+}
+
+
+/* Konten */
+
+.manager-content {
+    flex: 1;
+    min-width: 0;
+    padding: 28px 35px 20px;
+    overflow: hidden;
+}
+
+.manager-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.manager-topbar h1 {
+    font-size: 27px;
+    margin: 5px 0 0;
+    color: var(--text-main);
+}
+
+.manager-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.manager-profile {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.manager-profile strong,
+.manager-profile small {
+    display: block;
+}
+
+.manager-profile strong {
+    font-size: 13px;
+}
+
+.manager-profile small {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.manager-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue);
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.manager-alert {
+    margin-bottom: 16px;
+}
+
+
+/* Welcome */
+
+.manager-welcome {
+    min-height: 125px;
+    padding: 23px 28px;
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.manager-welcome h2 {
+    font-size: 23px;
+    margin: 8px 0;
+}
+
+.manager-welcome p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.welcome-mark {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--yellow);
+    font-size: 35px;
+}
+
+
+/* Statistik */
+
+.manager-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.manager-stat-card {
+    min-width: 0;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-panel);
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.stat-coffee {
+    background: #f1e0d4;
+    color: var(--primary);
+}
+
+.stat-stock {
+    background: #f8e5df;
+    color: var(--primary);
+}
+
+.stat-order {
+    background: #e3edf0;
+    color: #547f91;
+}
+
+.stat-income {
+    background: #f8edcf;
+    color: #96732e;
+}
+
+.manager-stat-card span,
+.manager-stat-card strong,
+.manager-stat-card small {
+    display: block;
+}
+
+.manager-stat-card span {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.manager-stat-card strong {
+    font-size: 21px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.manager-stat-card small {
+    color: var(--text-muted);
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.manager-stat-card .stat-money {
+    font-size: 16px;
+}
+
+
+/* Panel */
+
+.manager-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.manager-panel {
+    min-width: 0;
+    padding: 21px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-panel);
+    box-shadow: var(--shadow);
+}
+
+.manager-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.manager-panel-heading h3 {
+    font-size: 16px;
+    margin: 0 0 6px;
+}
+
+.manager-panel-heading p {
+    color: var(--text-muted);
+    font-size: 11px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.panel-tag {
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+
+/* Grafik batang */
+
+.simple-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.chart-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 7px;
+    font-size: 11px;
+}
+
+.chart-label span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chart-label strong {
+    white-space: nowrap;
+}
+
+.chart-track {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--bg-card);
+}
+
+.chart-bar {
+    height: 100%;
+    border-radius: 20px;
+    background: var(--primary);
+}
+
+.manager-empty {
+    padding: 35px 10px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+
+/* Supplier */
+
+.manager-supplier-panel {
     display: flex;
     flex-direction: column;
 }
 
-.kasir-header {
-    min-height: 75px;
-    background: var(--bg-header);
-    color: var(--nuage-de-lait);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 28px;
-}
-
-.kasir-brand,
-.kasir-user {
-    display: flex;
-    align-items: center;
-}
-
-.kasir-brand { gap: 12px; }
-
-.kasir-logo {
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
-    background: var(--miel-dore);
-    color: var(--espresso);
+.supplier-icon {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 11px;
+    background: #f8edcf;
+    color: #96732e;
+    font-size: 23px;
+}
+
+.supplier-note {
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin: 0 0 20px;
+}
+
+.manager-primary-btn {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.manager-primary-btn:hover {
+    background: var(--primary-hover);
+}
+
+
+/* Laporan */
+
+.manager-report-panel {
+    margin-bottom: 20px;
+    scroll-margin-top: 20px;
+}
+
+.report-heading {
+    margin-bottom: 25px;
+}
+
+.report-section {
+    margin-bottom: 28px;
+}
+
+.report-section:last-child {
+    margin-bottom: 0;
+}
+
+.report-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.report-section-title h4 {
+    font-size: 13px;
+    margin: 0;
+}
+
+.report-section-title span {
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+
+/* Tabel */
+
+.manager-table-wrap,
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.manager-table,
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.manager-table th,
+.manager-table td,
+.data-table th,
+.data-table td {
+    padding: 12px 13px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.manager-table th,
+.data-table th {
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.manager-table tbody tr:hover,
+.data-table tbody tr:hover {
+    background: #fdf9f1;
+}
+
+.manager-table-empty {
+    padding: 25px !important;
+    text-align: center !important;
+    color: var(--text-muted);
+}
+
+.manager-status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.manager-status.warning {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+}
+
+.margin-positive {
+    color: var(--success-text);
+}
+
+.margin-negative {
+    color: var(--danger-text);
+}
+
+.manager-footer {
+    padding: 15px 0 5px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+
+/* =========================================
+   KASIR
+========================================= */
+
+.kasir-body {
+    min-height: 100vh;
+    padding-bottom: 100px;
+    background: var(--bg-main);
+}
+
+.kasir-layout {
+    min-height: 100vh;
+}
+
+.kasir-header {
+    min-height: 70px;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-header);
+    color: #fff;
+}
+
+.kasir-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.kasir-logo {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+}
+
+.kasir-brand strong,
+.kasir-brand small {
+    display: block;
 }
 
 .kasir-brand strong {
-    display: block;
-    font-size: 15px;
+    font-size: 13px;
     letter-spacing: 1px;
 }
 
 .kasir-brand small {
-    color: #e5d6bd;
-    font-size: 11px;
+    font-size: 10px;
+    color: #e5cdb8;
+    margin-top: 4px;
 }
 
 .kasir-user {
-    gap: 18px;
-    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 12px;
 }
 
 .kasir-user a {
-    color: var(--miel-dore);
+    color: var(--yellow);
     text-decoration: none;
 }
 
 .kasir-main {
-    flex: 1;
     display: grid;
-    grid-template-columns: 175px minmax(300px, 1fr) 285px;
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: 190px minmax(0, 1fr) 310px;
+    gap: 20px;
+    padding: 22px;
+    align-items: start;
 }
 
 .kasir-sidebar,
 .kasir-order {
+    padding: 17px;
+    border-radius: var(--radius);
     background: var(--bg-panel);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 
 .kasir-sidebar {
-    padding: 17px 12px;
+    position: sticky;
+    top: 18px;
 }
 
 .kasir-sidebar h3 {
-    margin-bottom: 17px;
-    color: var(--text-muted);
-    font-size: 12px;
+    margin: 0 0 15px;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 
 .kategori-btn {
     width: 100%;
-    margin-bottom: 8px;
-    padding: 13px 12px;
-    border: 0;
-    border-radius: 7px;
+    display: block;
+    padding: 11px 12px;
+    margin-bottom: 7px;
+    border: none;
+    border-radius: 8px;
     background: transparent;
-    color: var(--text-main);
+    color: var(--text-muted);
     text-align: left;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background .2s, color .2s;
+    font-size: 12px;
+    transition: 0.2s;
 }
 
-.kategori-btn:hover {
-    background: #eee2c9;
-}
-
+.kategori-btn:hover,
 .kategori-btn.active {
-    background: var(--primary);
-    color: var(--nuage-de-lait);
-    font-weight: bold;
+    background: var(--bg-card);
+    color: var(--primary);
+    font-weight: 700;
 }
 
-.kasir-menu { min-width: 0; }
+.kasir-menu {
+    min-width: 0;
+}
 
 .kasir-menu-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 15px;
     margin-bottom: 18px;
 }
 
 .kasir-menu-header h2 {
-    margin-bottom: 5px;
-    font-size: 22px;
+    margin: 0 0 5px;
+    font-size: 20px;
 }
 
 .kasir-menu-header p {
+    margin: 0;
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .kasir-menu-header input {
-    width: 190px;
+    width: 210px;
     padding: 11px 13px;
     border: 1px solid var(--border);
-    border-radius: 7px;
+    border-radius: 8px;
     outline: none;
-    background: var(--nuage-de-lait);
-    color: var(--text-main);
+    background: #fff;
 }
 
 .kasir-menu-header input:focus {
-    border-color: var(--bleu-porcelaine);
-    box-shadow: 0 0 0 3px rgba(136, 184, 206, .2);
+    border-color: var(--secondary);
 }
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
     align-items: stretch;
-    gap: 18px;
 }
 
 .menu-card {
+    min-width: 0;
     overflow: hidden;
     border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--bg-card);
-    transition: border-color .2s, transform .2s;
+    border-radius: 13px;
+    background: var(--bg-panel);
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .menu-card:hover {
-    border-color: var(--eau-trouble);
     transform: translateY(-3px);
+    border-color: var(--secondary);
+    box-shadow: var(--shadow);
 }
 
 .menu-image {
-    position: relative;
     width: 100%;
-    height: 145px;
+    height: 135px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
     background: var(--bg-image);
+    overflow: hidden;
 }
 
 .menu-image:empty::after {
     content: "FOTO MENU";
-    padding: 10px 18px;
-    border: 1px dashed var(--text-muted);
+    padding: 9px 15px;
+    border: 1px dashed var(--secondary);
     border-radius: 6px;
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 10px;
     letter-spacing: 2px;
 }
 
@@ -239,35 +1052,33 @@
     object-fit: cover;
 }
 
-.menu-info { padding: 14px; }
-
-.menu-category {
-    display: inline-block;
-    margin-bottom: 7px;
-    color: var(--terre-cuite);
-    font-size: 10px;
-    text-transform: uppercase;
+.menu-info {
+    padding: 13px;
 }
 
 .menu-info h3 {
-    min-height: 17px;
-    margin: 0 0 12px;
-    color: var(--text-main);
-    font-size: 16px;
+    margin: 7px 0 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.menu-category {
+    color: var(--text-muted);
+    font-size: 10px;
 }
 
 .menu-price {
     display: block;
     margin-bottom: 10px;
-    color: var(--espresso);
-    font-size: 14px;
+    color: var(--primary);
+    font-size: 13px;
 }
 
 .menu-status {
     display: inline-block;
-    padding: 6px 11px;
+    padding: 5px 9px;
     border-radius: 20px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
 }
 
@@ -285,305 +1096,270 @@
 
 .petunjuk-menu {
     display: block;
-    margin-top: 9px;
+    margin-top: 10px;
     color: var(--text-muted);
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .kasir-order {
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
+    position: sticky;
+    top: 18px;
+    min-height: 350px;
 }
 
 .order-header {
-    padding: 18px;
-    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
 }
 
-.order-header h3 { font-size: 17px; }
+.order-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
 
 .order-header span {
-    color: var(--terre-cuite);
-    font-size: 11px;
+    padding: 6px 9px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 10px;
 }
 
 .order-empty {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 45px 12px;
     text-align: center;
+    color: var(--text-muted);
 }
 
 .order-empty-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 13px;
-    border: 1px dashed var(--text-muted);
-    border-radius: 50%;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--terre-cuite);
-    font-size: 27px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--primary);
+    font-size: 23px;
 }
 
 .order-empty strong {
-    margin-bottom: 7px;
+    display: block;
+    color: var(--text-main);
     font-size: 13px;
 }
 
 .order-empty p {
-    color: var(--text-muted);
     font-size: 11px;
     line-height: 1.5;
 }
 
 .order-footer {
-    padding: 15px;
+    padding-top: 15px;
     border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.btn-buat-pesanan,
-.btn-riwayat {
-    padding: 12px;
-    border-radius: 7px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
 }
 
 .btn-buat-pesanan {
-    border: 0;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
     background: var(--primary);
-    color: var(--nuage-de-lait);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
 }
 
-.btn-buat-pesanan:hover { background: var(--terre-cuite); }
+.btn-buat-pesanan:hover {
+    background: var(--primary-hover);
+}
 
 .btn-riwayat {
-    border: 1px solid var(--eau-trouble);
-    color: var(--text-main);
-}
-
-.btn-riwayat:hover { background: #eee2c9; }
-
-.alert-error,
-.alert-success {
-    margin: 12px;
-    padding: 12px 15px;
+    width: 100%;
+    display: block;
+    padding: 11px;
+    margin-top: 9px;
+    border: 1px solid var(--border);
     border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
 }
 
-.alert-error {
-    background: var(--danger-bg);
-    color: var(--danger-text);
+.btn-riwayat:hover {
+    background: var(--bg-image);
 }
 
-.alert-success {
-    background: var(--success-bg);
-    color: var(--success-text);
-}
 
-/* Navigasi bawah mengambang */
+/* Navigasi kasir melayang */
+
 .kasir-bottom-nav {
     position: fixed;
     z-index: 1000;
     left: 50%;
     bottom: 18px;
+    transform: translateX(-50%);
     width: min(680px, calc(100% - 32px));
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    background: var(--espresso);
-    box-shadow: 0 8px 30px rgba(84, 41, 22, .22);
+    padding: 9px 12px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 8px;
-    transform: translateX(-50%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--bg-header);
+    box-shadow: 0 8px 30px rgba(84, 41, 22, 0.2);
 }
 
 .bottom-nav-item {
     flex: 1;
-    min-width: 50px;
-    padding: 9px 6px;
-    border-radius: 12px;
-    color: #e5d6bd;
+    padding: 8px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border-radius: 9px;
+    color: #fefaf0;
     text-decoration: none;
-    text-align: center;
-    font-size: 12px;
-    transition: .2s;
+    font-size: 17px;
 }
 
-.bottom-nav-item span {
-    display: block;
-    font-size: 21px;
+.bottom-nav-item small {
+    font-size: 9px;
 }
-
-.bottom-nav-item small { font-size: 10px; }
 
 .bottom-nav-item:hover,
 .bottom-nav-item.active {
-    background: rgba(241, 193, 102, .15);
-    color: var(--miel-dore);
+    background: var(--primary);
+    color: #fff;
 }
 
-/* login */
-.login-body {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 40px 8%;
-    background: var(--bleu-porcelaine);
-    color: var(--espresso);
-    font-family: Arial, Helvetica, sans-serif;
-}
 
-/*  foto */
-.login-body::before {
-    content: "FOTO KEDAI KOPI";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #d8c7a5;
-    color: var(--espresso);
-    font-size: 13px;
-    letter-spacing: 3px;
-}
+/* =========================================
+   TABEL DAN KOMPONEN UMUM
+========================================= */
 
-.login-container {
-    position: relative;
-    z-index: 1;
-    width: min(400px, 100%);
-    margin-right: 3%;
-    padding: 38px 42px;
-    border-radius: 22px;
-    background: var(--nuage-de-lait);
-    box-shadow: 0 14px 40px rgba(84, 41, 22, .12);
-}
-
-.login-container h2 {
-    margin: 18px 0 8px;
-    color: var(--espresso);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 36px;
-    font-weight: 500;
-    text-align: center;
-}
-
-.login-container > p {
-    margin-bottom: 25px;
-    color: var(--text-muted);
-    font-size: 13px;
-    text-align: center;
-}
-
-.login-container form { width: 100%; }
-
-.login-container .form-group { margin-bottom: 16px; }
-
-.login-container label {
-    display: block;
-    margin-bottom: 7px;
-    color: var(--espresso);
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.login-container input {
-    width: 100%;
-    min-height: 44px;
-    padding: 11px 14px;
+.data-table {
+    background: var(--bg-panel);
     border: 1px solid var(--border);
-    border-radius: 9px;
-    outline: none;
-    background: #fffdf8;
-    color: var(--espresso);
-    font: inherit;
-    font-size: 13px;
 }
 
-.login-container input::placeholder { color: #9a8668; }
-
-.login-container input:focus {
-    border-color: var(--bleu-porcelaine);
-    box-shadow: 0 0 0 3px rgba(136, 184, 206, .22);
+.data-table th {
+    background: var(--bg-card);
 }
 
-.login-container .btn-primary {
-    width: 100%;
-    min-height: 44px;
-    margin-top: 2px;
-    border: 0;
-    border-radius: 9px;
-    background: #5c7f90;
-    color: var(--nuage-de-lait);
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background .2s;
+.table-row-warning {
+    background: #fffaf0;
 }
 
-.login-container .btn-primary:hover { background: var(--espresso); }
-
-.login-container .alert-error {
-    margin: 0 0 16px;
-    font-size: 12px;
-    line-height: 1.5;
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 11px;
 }
 
-/* =====================================
+.badge-danger {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================
    RESPONSIVE
-   ===================================== */
+========================================= */
+
 @media (max-width: 1100px) {
+
+    .manager-content {
+        padding: 24px 20px;
+    }
+
+    .manager-stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .kasir-main {
-        grid-template-columns: 145px minmax(250px, 1fr);
+        grid-template-columns: 160px minmax(0, 1fr);
     }
 
     .kasir-order {
-        grid-column: 1 / -1;
-        min-height: 300px;
+        position: static;
+        grid-column: 2;
     }
 
-    .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (max-width: 650px) {
-    .kasir-header { padding: 0 15px; }
+@media (max-width: 800px) {
+
+    .manager-sidebar {
+        width: 75px;
+        min-width: 75px;
+        padding: 20px 9px;
+    }
+
+    .manager-side-title {
+        display: none;
+    }
+
+    .manager-nav a,
+    .manager-logout {
+        justify-content: center;
+        padding: 13px 5px;
+    }
+
+    .manager-nav a span:last-child,
+    .manager-logout span:last-child {
+        display: none;
+    }
+
+    .manager-nav-icon {
+        font-size: 21px;
+    }
+
+    .manager-main-grid {
+        grid-template-columns: 1fr;
+    }
 
     .kasir-main {
-        display: flex;
-        flex-direction: column;
-        padding: 12px;
+        grid-template-columns: 1fr;
+    }
+
+    .kasir-sidebar,
+    .kasir-order {
+        position: static;
+        grid-column: auto;
     }
 
     .kasir-sidebar {
         display: flex;
         flex-wrap: wrap;
-        gap: 5px;
+        gap: 7px;
     }
 
     .kasir-sidebar h3 {
         width: 100%;
-        margin-bottom: 5px;
     }
 
     .kategori-btn {
@@ -591,38 +1367,325 @@
         margin: 0;
     }
 
-    .kasir-menu-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .kasir-menu-header input { width: 100%; }
-    .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .menu-image { height: 115px; }
-    .menu-info { padding: 11px; }
-
-    .kasir-bottom-nav {
-        bottom: 12px;
-        width: calc(100% - 24px);
-        gap: 5px;
-    }
-
-    .bottom-nav-item { padding: 8px 3px; }
 }
 
-@media (max-width: 760px) {
-    .login-body {
-        justify-content: center;
-        padding: 24px;
-    }
+@media (max-width: 600px) {
 
-    .login-body::before { display: none; }
+    .login-body {
+        background: var(--bg-main);
+    }
 
     .login-container {
-        width: min(440px, 100%);
-        margin: 0;
-        padding: 32px 26px;
+        width: 100%;
+        min-height: 100vh;
+        padding: 25px;
     }
 
-    .login-container h2 { font-size: 30px; }
+    .login-container::before {
+        display: none;
+    }
+
+    .login-container form {
+        padding: 28px 23px;
+    }
+
+    .manager-content {
+        padding: 20px 13px;
+    }
+
+    .manager-topbar h1 {
+        font-size: 22px;
+    }
+
+    .manager-stat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .manager-stat-card {
+        padding: 12px;
+        gap: 9px;
+    }
+
+    .manager-stat-card strong {
+        font-size: 17px;
+    }
+
+    .stat-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+    .manager-welcome {
+        padding: 18px;
+    }
+
+    .manager-welcome h2 {
+        font-size: 19px;
+    }
+
+    .welcome-mark {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .manager-panel {
+        padding: 15px;
+    }
+
+    .manager-panel-heading {
+        flex-wrap: wrap;
+    }
+
+    .manager-avatar {
+        width: 34px;
+        height: 34px;
+    }
+
+    .manager-profile strong {
+        font-size: 11px;
+    }
+
+    .manager-profile small {
+        font-size: 10px;
+    }
+
+    .kasir-header {
+        padding: 12px 15px;
+    }
+
+    .kasir-main {
+        padding: 13px;
+        gap: 13px;
+    }
+
+    .kasir-menu-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .kasir-menu-header input {
+        width: 100%;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .menu-image {
+        height: 110px;
+    }
+
+    .menu-info {
+        padding: 10px;
+    }
+
+    .menu-info h3 {
+        font-size: 12px;
+    }
+
+    .menu-price {
+        font-size: 12px;
+    }
+
+    .kasir-bottom-nav {
+        bottom: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .bottom-nav-item {
+        padding: 8px 3px;
+    }
+
+    .bottom-nav-item small {
+        font-size: 8px;
+    }
+
+    .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .nav-menu {
+        width: 100%;
+    }
+
+    .container {
+        width: calc(100% - 24px);
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .manager-sidebar {
+        width: 58px;
+        min-width: 58px;
+        padding: 15px 5px;
+    }
+
+    .manager-logo {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .manager-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   PERBAIKAN FORM UMUM
+   Berlaku untuk form Kasir dan Manajer.
+   Style Login tetap menggunakan aturan khususnya.
+========================================= */
+
+.kasir-layout .form-group,
+.manager-content .form-group,
+.container .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.kasir-layout .form-group label,
+.manager-content .form-group label,
+.container .form-group label {
+    display: block;
+    margin: 0;
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.kasir-layout .form-group input,
+.kasir-layout .form-group select,
+.kasir-layout .form-group textarea,
+.manager-content .form-group input,
+.manager-content .form-group select,
+.manager-content .form-group textarea,
+.container .form-group input,
+.container .form-group select,
+.container .form-group textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.kasir-layout .form-group textarea,
+.manager-content .form-group textarea,
+.container .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.kasir-layout .form-group input:focus,
+.kasir-layout .form-group select:focus,
+.kasir-layout .form-group textarea:focus,
+.manager-content .form-group input:focus,
+.manager-content .form-group select:focus,
+.manager-content .form-group textarea:focus,
+.container .form-group input:focus,
+.container .form-group select:focus,
+.container .form-group textarea:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(183, 152, 88, 0.13);
+}
+
+.kasir-layout .form-group input::placeholder,
+.manager-content .form-group input::placeholder,
+.container .form-group input::placeholder,
+.kasir-layout .form-group textarea::placeholder,
+.manager-content .form-group textarea::placeholder,
+.container .form-group textarea::placeholder {
+    color: #a99a89;
+}
+
+.kasir-layout .form-group small,
+.manager-content .form-group small,
+.container .form-group small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* Tombol utama pada halaman Kasir dan Manajer */
+.kasir-layout .btn-primary,
+.manager-content .btn-primary,
+.container .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.kasir-layout .btn-primary:hover,
+.manager-content .btn-primary:hover,
+.container .btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.kasir-layout .btn-primary:disabled,
+.manager-content .btn-primary:disabled,
+.container .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Kartu form Reset Password dan form Kasir lainnya */
+.kasir-order form {
+    width: 100%;
+}
+
+.kasir-order .form-group:last-of-type {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .kasir-layout .form-group,
+    .manager-content .form-group,
+    .container .form-group {
+        margin-bottom: 15px;
+    }
+
+    .kasir-layout .btn-primary,
+    .manager-content .btn-primary,
+    .container .btn-primary {
+        max-width: 100%;
+    }
 }
