@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
@@ -10,9 +9,7 @@ require_role('manajer');
 $error = '';
 $success = '';
 
-// ==========================================
-// SINKRONISASI HARGA SUPPLIER
-// ==========================================
+// sinkronisasi harga bahan dari layanan supplier
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sync_supplier'])) {
 
     $hasilApi = ambilHargaBahanSupplier();
@@ -117,9 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sync_supplier'])) {
     }
 }
 
-// ==========================================
-// STATISTIK DASHBOARD
-// ==========================================
+// statistik dashboard
 
 $totalMenu = (int) $pdo->query("
     SELECT COUNT(*)
@@ -146,9 +141,7 @@ $pendapatanHariIni = (float) ($pdo->query("
     AND DATE(created_at) = CURDATE()
 ")->fetchColumn() ?: 0);
 
-// ==========================================
-// LAPORAN PENJUALAN PER MENU
-// ==========================================
+// laporan penjualan per menu
 
 $stmtLapPenjualan = $pdo->query("
     SELECT
@@ -166,9 +159,7 @@ $stmtLapPenjualan = $pdo->query("
 
 $laporan_penjualan = $stmtLapPenjualan->fetchAll(PDO::FETCH_ASSOC);
 
-// ==========================================
-// BAHAN MENIPIS
-// ==========================================
+// bahan menipis
 
 $bahan_menipis = $pdo->query("
     SELECT
@@ -181,9 +172,7 @@ $bahan_menipis = $pdo->query("
     ORDER BY stok ASC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-// ==========================================
-// MARGIN KEUNTUNGAN MENU
-// ==========================================
+// margin keuntungan per menu
 
 $menu_margins = $pdo->query("
     SELECT
@@ -204,9 +193,7 @@ $menu_margins = $pdo->query("
     ORDER BY m.nama_menu
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-// ==========================================
-// NILAI MAKSIMUM GRAFIK
-// ==========================================
+// nilai maksimum untuk grafik menu terlaris
 
 $nilaiMaksGrafik = 1;
 
@@ -232,7 +219,7 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
 <body class="manager-body">
 <div class="manager-shell">
 
-    <!-- SIDEBAR -->
+    <!-- sidebar -->
     <aside class="manager-sidebar">
         <div class="manager-side-title">
             <br>KEDAI KOPI SENJA
@@ -274,10 +261,10 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
 
     </aside>
 
-    <!-- KONTEN UTAMA -->
+    <!-- konten utama -->
     <main class="manager-content">
 
-        <!-- HEADER -->
+        <!-- header -->
         <header class="manager-topbar">
 
             <div>
@@ -298,7 +285,7 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
             </div>
         </header>
 
-        <!-- NOTIFIKASI -->
+        <!-- notifikasi -->
         <?php if ($error !== ''): ?>
             <div class="alert-error manager-alert">
                 <?= htmlspecialchars($error) ?>
@@ -311,7 +298,7 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
             </div>
         <?php endif; ?>
 
-        <!-- WELCOME -->
+        <!-- welcome -->
         <section class="manager-welcome">
 
             <div>
@@ -327,153 +314,110 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
             </div>
         </section>
 
-        <!-- STATISTIK -->
+        <!-- statistik -->
         <section class="manager-stat-grid">
             <article class="manager-stat-card">
-                <div class="stat-icon stat-coffee">☕</div>
-
+                <div class="stat-icon stat-coffee">☕︎</div>
                 <div>
                     <span>Total Menu</span>
-
                     <strong>
                         <?= number_format($totalMenu, 0, ',', '.') ?>
                     </strong>
-
                     <small>Menu terdaftar</small>
                 </div>
-
             </article>
 
             <article class="manager-stat-card">
-
-                <div class="stat-icon stat-stock">▤</div>
-
+                <div class="stat-icon stat-stock">🗒</div>
                 <div>
                     <span>Bahan Menipis</span>
-
                     <strong>
                         <?= number_format($totalBahanMenipis, 0, ',', '.') ?>
                     </strong>
-
                     <small>Perlu diperiksa</small>
                 </div>
-
             </article>
 
             <article class="manager-stat-card">
-
-                <div class="stat-icon stat-order">▣</div>
-
+                <div class="stat-icon stat-order">✎</div>
                 <div>
                     <span>Pesanan Hari Ini</span>
-
                     <strong>
                         <?= number_format($totalPesananHariIni, 0, ',', '.') ?>
                     </strong>
-
                     <small>Pesanan tidak dibatalkan</small>
                 </div>
-
             </article>
 
             <article class="manager-stat-card">
-
                 <div class="stat-icon stat-income">Rp</div>
-
                 <div>
                     <span>Pendapatan Hari Ini</span>
-
                     <strong class="stat-money">
                         Rp <?= number_format($pendapatanHariIni, 0, ',', '.') ?>
                     </strong>
-
                     <small>Dari pesanan tidak dibatalkan</small>
                 </div>
-
             </article>
 
         </section>
 
-        <!-- GRAFIK DAN SUPPLIER -->
+        <!-- grafik dan supplier -->
         <section class="manager-main-grid">
 
-            <!-- GRAFIK MENU TERLARIS -->
+            <!-- grafik menu terlaris -->
             <article class="manager-panel manager-chart-panel">
-
                 <div class="manager-panel-heading">
-
                     <div>
                         <h3>Menu Terlaris</h3>
                         <p>5 menu dengan jumlah porsi terjual terbanyak</p>
                     </div>
-
                     <span class="panel-tag">Semua waktu</span>
-
                 </div>
 
                 <?php if (count($laporan_penjualan) > 0): ?>
-
                     <div class="simple-chart">
-
                         <?php foreach (array_slice($laporan_penjualan, 0, 5) as $item): ?>
-
                             <?php
                             $lebarBar = max(
                                 4,
                                 ((int) $item['total_terjual'] / $nilaiMaksGrafik) * 100
                             );
                             ?>
-
                             <div class="chart-row">
-
                                 <div class="chart-label">
-
-                                    <span>
-                                        <?= htmlspecialchars($item['nama_menu']) ?>
-                                    </span>
-
+                                    <span><?= htmlspecialchars($item['nama_menu']) ?></span>
                                     <strong>
                                         <?= number_format((int) $item['total_terjual'], 0, ',', '.') ?>
                                         porsi
                                     </strong>
-
                                 </div>
 
                                 <div class="chart-track">
-
                                     <div
                                         class="chart-bar"
                                         style="width: <?= $lebarBar ?>%;">
                                     </div>
-
                                 </div>
-
                             </div>
-
                         <?php endforeach; ?>
-
                     </div>
 
                 <?php else: ?>
-
                     <div class="manager-empty">
                         Belum ada data penjualan untuk ditampilkan.
                     </div>
 
                 <?php endif; ?>
-
             </article>
 
-            <!-- SUPPLIER -->
+            <!-- supplier -->
             <article class="manager-panel manager-supplier-panel">
-
                 <div class="manager-panel-heading">
-
                     <div>
                         <h3>Harga Supplier</h3><br>
                         <p>Perbarui harga bahan dari layanan supplier.</p>
                     </div>
-
                 </div>
 
                 <form method="POST" action="">
@@ -483,53 +427,36 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                         name="sync_supplier"
                         value="1"
                         class="manager-primary-btn">
-
                         Sinkronkan Harga
-
                     </button>
-
                 </form>
-
                 <p class="supplier-note">
                     Jika layanan supplier sedang tidak tersedia,
                     harga terakhir di database tetap digunakan.
                 </p>
-
             </article>
-
         </section>
 
-        <!-- LAPORAN OPERASIONAL -->
+        <!-- laporan operasional -->
         <section class="manager-panel manager-report-panel" id="laporan">
-
             <div class="manager-panel-heading report-heading">
-
                 <div>
                     <h3>Laporan Operasional</h3>
                     <p>Ringkasan penjualan, stok, dan margin menu.</p>
                 </div>
-
                 <span class="panel-tag">Data terbaru</span>
-
             </div>
 
-            <!-- LAPORAN STOK -->
+            <!-- laporan stok -->
             <div class="report-section">
-
                 <div class="report-section-title">
-
                     <h4>Perlu Restock</h4>
-
                     <span>
                         <?= count($bahan_menipis) ?> bahan
                     </span>
-
                 </div>
-
                 <div class="manager-table-wrap">
-
                     <table class="manager-table">
-
                         <thead>
                             <tr>
                                 <th>Nama Bahan</th>
@@ -539,21 +466,15 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                                 <th>Status</th>
                             </tr>
                         </thead>
-
                         <tbody>
-
                             <?php if ($bahan_menipis): ?>
-
                                 <?php foreach ($bahan_menipis as $bm): ?>
-
                                     <tr>
-
                                         <td>
                                             <strong>
                                                 <?= htmlspecialchars($bm['nama_bahan']) ?>
                                             </strong>
                                         </td>
-
                                         <td>
                                             <?= htmlspecialchars($bm['satuan_dasar']) ?>
                                         </td>
@@ -571,40 +492,27 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                                                 Perlu restock
                                             </span>
                                         </td>
-
                                     </tr>
-
                                 <?php endforeach; ?>
-
                             <?php else: ?>
-
                                 <tr>
                                     <td colspan="5" class="manager-table-empty">
                                         Semua stok bahan dalam kondisi aman.
                                     </td>
                                 </tr>
-
                             <?php endif; ?>
-
                         </tbody>
-
                     </table>
-
                 </div>
-
             </div>
 
-            <!-- LAPORAN PENJUALAN -->
+            <!-- laporan penjualan -->
             <div class="report-section">
-
                 <div class="report-section-title">
                     <h4>Penjualan per Menu</h4>
                 </div>
-
                 <div class="manager-table-wrap">
-
                     <table class="manager-table">
-
                         <thead>
                             <tr>
                                 <th>Nama Menu</th>
@@ -615,13 +523,9 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                         </thead>
 
                         <tbody>
-
                             <?php if ($laporan_penjualan): ?>
-
                                 <?php foreach ($laporan_penjualan as $lp): ?>
-
                                     <tr>
-
                                         <td>
                                             <strong>
                                                 <?= htmlspecialchars($lp['nama_menu']) ?>
@@ -639,40 +543,29 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                                         <td>
                                             Rp <?= number_format((float) $lp['total_pendapatan'], 0, ',', '.') ?>
                                         </td>
-
                                     </tr>
-
                                 <?php endforeach; ?>
 
                             <?php else: ?>
-
                                 <tr>
                                     <td colspan="4" class="manager-table-empty">
                                         Belum ada data penjualan tercatat.
                                     </td>
                                 </tr>
-
                             <?php endif; ?>
-
                         </tbody>
-
                     </table>
-
                 </div>
-
             </div>
 
-            <!-- LAPORAN MARGIN -->
+            <!-- laporan margin -->
             <div class="report-section">
-
                 <div class="report-section-title">
                     <h4>Margin Keuntungan per Menu</h4>
                 </div>
 
                 <div class="manager-table-wrap">
-
                     <table class="manager-table">
-
                         <thead>
                             <tr>
                                 <th>Nama Menu</th>
@@ -684,21 +577,15 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                         </thead>
 
                         <tbody>
-
                             <?php if ($menu_margins): ?>
-
                                 <?php foreach ($menu_margins as $mm): ?>
-
                                     <?php
                                     $memilikiResep = (int) $mm['jumlah_resep'] > 0;
-
                                     $margin = $memilikiResep
                                         ? (float) $mm['harga_jual'] - (float) $mm['hpp']
                                         : null;
                                     ?>
-
                                     <tr>
-
                                         <td>
                                             <strong>
                                                 <?= htmlspecialchars($mm['nama_menu']) ?>
@@ -728,25 +615,16 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                                         </td>
 
                                         <td>
-
                                             <?php if ($memilikiResep): ?>
-
                                                 <strong class="<?= $margin >= 0 ? 'margin-positive' : 'margin-negative' ?>">
                                                     Rp <?= number_format($margin, 0, ',', '.') ?>
                                                 </strong>
-
                                             <?php else: ?>
-
                                                 -
-
                                             <?php endif; ?>
-
                                         </td>
-
                                     </tr>
-
                                 <?php endforeach; ?>
-
                             <?php else: ?>
 
                                 <tr>
@@ -754,27 +632,18 @@ $namaManajer = $_SESSION['nama'] ?? 'Manajer';
                                         Belum ada menu terdaftar.
                                     </td>
                                 </tr>
-
                             <?php endif; ?>
-
                         </tbody>
-
                     </table>
-
                 </div>
-
             </div>
-
         </section>
 
-        <!-- FOOTER -->
+        <!-- footer -->
         <footer class="manager-footer">
             Kedai Kopi Senja · Dashboard Manajer
         </footer>
-
     </main>
-
 </div>
-
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
@@ -235,7 +234,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="container">
-
             <div class="manager-welcome">
                 <span class="manager-eyebrow">KEDAI KOPI SENJA</span>
                 <h2>Perbarui Data Bahan</h2>
@@ -257,9 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <div class="update-card">
-
                 <h3>Informasi Bahan</h3>
-
                 <form method="POST" action="" class="update-form">
 
                     <input
@@ -270,7 +266,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label>Nama Bahan</label>
-
                         <input
                             type="text"
                             name="nama_bahan"
@@ -282,7 +277,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label>Satuan Dasar</label>
-
                         <input
                             type="text"
                             value="<?= htmlspecialchars($bahan['satuan_dasar']) ?>"
@@ -292,7 +286,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label>Harga Satuan (Rp)</label>
-
                         <input
                             type="number"
                             name="harga_satuan"
@@ -305,7 +298,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label>Stok Saat Ini</label>
-
                         <input
                             type="number"
                             step="0.01"
@@ -316,7 +308,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label>Batas Minimum Stok</label>
-
                         <input
                             type="number"
                             name="batas_minimum"
@@ -330,7 +321,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
 
                 <div class="update-actions">
-
                     <button
                         type="submit"
                         form="formUpdateBahan"
@@ -345,13 +335,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     >
                         Kembali
                     </a>
-
                 </div>
-
             </div>
-
         </div>
-
         <footer class="manager-footer">
             Kedai Kopi Senja · Dashboard Manajer
         </footer>
@@ -361,11 +347,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
-// Hubungkan tombol simpan dengan form update
+// menghubungkan tombol simpan dengan form update
 document.querySelector('.update-actions button').addEventListener('click', function () {
     document.querySelector('.update-form').requestSubmit();
 });
 </script>
-
 </body>
 </html>

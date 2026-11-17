@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
@@ -15,9 +14,7 @@ $hasil_import = [];
 $menu_id = (int)($_GET['menu_id'] ?? 0);
 $menu = null;
 
-/* =========================
-   FUNGSI BANTU
-========================= */
+/* FUNGSI BANTU*/
 
 function teksNormal($teks)
 {
@@ -68,9 +65,7 @@ function kolomCSV($header, $nama)
     return false;
 }
 
-/* =========================
-   AMBIL DATA MENU
-========================= */
+/*AMBIL DATA MENU*/
 
 $menu_list = $pdo->query("
     SELECT id, kode_menu, nama_menu, kategori, harga_jual
@@ -89,9 +84,7 @@ if ($menu_id > 0) {
     }
 }
 
-/* =========================
-   IMPOR RESEP CSV
-========================= */
+/*IMPOR RESEP CSV*/
 
 if (
     $_SERVER['REQUEST_METHOD'] === 'POST' &&
@@ -320,9 +313,7 @@ if (
     }
 }
 
-/* =========================
-   TAMBAH, EDIT, HAPUS RESEP
-========================= */
+/*TAMBAH, EDIT, HAPUS RESEP*/
 
 if (
     $menu &&
@@ -390,9 +381,7 @@ if (
     }
 }
 
-/* =========================
-   DATA RESEP DAN BAHAN
-========================= */
+/*DATA RESEP DAN BAHAN*/
 
 $semua_resep = [];
 $resep_list = [];
@@ -420,7 +409,6 @@ if ($menu) {
         FROM bahan
         ORDER BY nama_bahan
     ")->fetchAll(PDO::FETCH_ASSOC);
-
 } else {
     $dataResep = $pdo->query("
         SELECT
@@ -444,9 +432,7 @@ if ($menu) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Resep - Manajer Kedai Kopi Senja</title>
-
     <link rel="stylesheet" href="<?= BASEURL ?>/assets/style.css">
 
     <style>
@@ -521,10 +507,8 @@ if ($menu) {
 </head>
 
 <body>
-
 <div class="manager-shell">
-
-    <!-- SIDEBAR SAMA DENGAN BAHAN.PHP -->
+    <!-- sidebar -->
     <aside class="manager-sidebar">
         <div class="manager-side-title">
             <br>KEDAI KOPI SENJA
@@ -563,10 +547,10 @@ if ($menu) {
         </a>
     </aside>
 
-    <!-- KONTEN UTAMA -->
+    <!-- konten utama -->
     <main class="manager-content">
 
-        <!-- TOPBAR SAMA DENGAN BAHAN.PHP -->
+        <!-- topbar -->
         <div class="manager-topbar">
             <div>
                 <span class="manager-eyebrow">OVERVIEW</span>
@@ -585,9 +569,7 @@ if ($menu) {
             </div>
         </div>
 
-        <!-- CONTAINER SAMA DENGAN BAHAN.PHP -->
         <div class="container">
-
             <?php if ($error): ?>
                 <div class="alert-error">
                     <?= htmlspecialchars($error) ?>
@@ -603,7 +585,6 @@ if ($menu) {
             <?php if ($hasil_import): ?>
                 <div class="recipe-result">
                     <strong>Hasil Impor CSV</strong>
-
                     <ul>
                         <li>Resep baru: <?= $hasil_import['baru'] ?></li>
                         <li>Resep diperbarui: <?= $hasil_import['update'] ?></li>
@@ -622,25 +603,20 @@ if ($menu) {
                 </div>
             <?php endif; ?>
 
-            <!-- WELCOME -->
+            <!-- welcome -->
             <div class="manager-welcome">
                 <span class="manager-eyebrow">KEDAI KOPI SENJA</span>
-
                 <h2>
                     <?= $menu
                         ? htmlspecialchars($menu['nama_menu'])
                         : 'Kelola Resep Menu'
                     ?>
                 </h2>
-
-                <p>
-                    Atur komposisi bahan untuk setiap menu yang tersedia.
-                </p>
+                <p>Atur komposisi bahan untuk setiap menu yang tersedia.</p>
             </div>
 
-            <!-- IMPOR CSV -->
+            <!-- impor csv -->
             <section class="manager-panel" style="margin-bottom:22px;">
-
                 <div class="manager-panel-heading">
                     <div>
                         <h3>Impor Data Resep</h3>
@@ -681,9 +657,8 @@ if ($menu) {
 
             <?php if (!$menu): ?>
 
-                <!-- DAFTAR RESEP -->
+                <!-- daftar resep -->
                 <section class="manager-panel manager-report-panel">
-
                     <div class="manager-panel-heading">
                         <div>
                             <h3>Daftar Resep Menu</h3>
@@ -698,11 +673,8 @@ if ($menu) {
                     </div>
 
                     <?php if ($menu_list): ?>
-
                         <div class="recipe-grid">
-
                             <?php foreach ($menu_list as $m): ?>
-
                                 <?php
                                 $daftarBahan = $semua_resep[$m['id']] ?? [];
                                 $hpp = 0;
@@ -711,9 +683,7 @@ if ($menu) {
                                     $hpp += $b['takaran'] * $b['harga_satuan'];
                                 }
                                 ?>
-
                                 <article class="recipe-card">
-
                                     <h3>
                                         <?= htmlspecialchars($m['nama_menu']) ?>
                                     </h3>
@@ -725,39 +695,27 @@ if ($menu) {
                                     <p>
                                         <?= count($daftarBahan) ?> bahan dalam resep
                                     </p>
-
                                     <div class="recipe-hpp">
                                         HPP:
                                         Rp <?= number_format($hpp, 2, ',', '.') ?>
-                                    </div>
-
-                                    <br>
-
+                                    </div><br>
                                     <a
                                         class="btn-sm btn-info"
                                         href="<?= BASEURL ?>/manajer/resep.php?menu_id=<?= $m['id'] ?>"
                                     >
                                         Kelola Resep
                                     </a>
-
                                 </article>
-
                             <?php endforeach; ?>
-
                         </div>
 
                     <?php else: ?>
-
-                        <p>
-                            Belum ada data menu. Impor menu terlebih dahulu melalui halaman Menu.
-                        </p>
+                        <p>Belum ada data menu. Impor menu terlebih dahulu melalui halaman Menu.</p>
 
                     <?php endif; ?>
-
                 </section>
 
             <?php else: ?>
-
                 <p style="margin-bottom:20px;">
                     <a
                         href="<?= BASEURL ?>/manajer/resep.php"
@@ -767,9 +725,8 @@ if ($menu) {
                     </a>
                 </p>
 
-                <!-- TAMBAH BAHAN -->
+                <!-- tambah bahan -->
                 <section class="manager-panel" style="margin-bottom:22px;">
-
                     <div class="manager-panel-heading">
                         <div>
                             <h3>Tambah Komposisi Bahan</h3>
@@ -785,13 +742,10 @@ if ($menu) {
                         style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;"
                     >
                         <input type="hidden" name="aksi" value="tambah_resep">
-
                         <div class="form-group">
                             <label>Pilih Bahan</label>
-
                             <select name="bahan_id" required>
                                 <option value="">-- Pilih Bahan --</option>
-
                                 <?php foreach ($bahan_list as $b): ?>
                                     <option value="<?= $b['id'] ?>">
                                         <?= htmlspecialchars($b['nama_bahan']) ?>
@@ -803,7 +757,6 @@ if ($menu) {
 
                         <div class="form-group">
                             <label>Takaran per Porsi</label>
-
                             <input
                                 type="number"
                                 name="takaran"
@@ -812,17 +765,14 @@ if ($menu) {
                                 required
                             >
                         </div>
-
                         <button type="submit" class="manager-primary-btn">
                             + Tambah Bahan
                         </button>
                     </form>
-
                 </section>
 
-                <!-- DAFTAR KOMPOSISI -->
+                <!-- daftar komposisi -->
                 <section class="manager-panel manager-report-panel">
-
                     <div class="manager-panel-heading">
                         <div>
                             <h3>Komposisi Bahan</h3>
@@ -837,9 +787,7 @@ if ($menu) {
                     </div>
 
                     <div class="manager-table-wrap">
-
                         <table class="manager-table">
-
                             <thead>
                                 <tr>
                                     <th>Nama Bahan</th>
@@ -851,18 +799,13 @@ if ($menu) {
                             </thead>
 
                             <tbody>
-
                                 <?php $totalHpp = 0; ?>
-
                                 <?php if ($resep_list): ?>
-
                                     <?php foreach ($resep_list as $r): ?>
-
                                         <?php
                                         $subtotal = $r['takaran'] * $r['harga_satuan'];
                                         $totalHpp += $subtotal;
                                         ?>
-
                                         <tr>
                                             <td>
                                                 <?= htmlspecialchars($r['nama_bahan']) ?>
@@ -884,7 +827,7 @@ if ($menu) {
                                             <td>
                                                 <div style="display:flex;gap:6px;flex-wrap:wrap;">
 
-                                                    <!-- EDIT -->
+                                                    <!-- edit -->
                                                     <form
                                                         method="POST"
                                                         action="<?= BASEURL ?>/manajer/resep.php?menu_id=<?= $menu_id ?>"
@@ -920,7 +863,7 @@ if ($menu) {
                                                         </button>
                                                     </form>
 
-                                                    <!-- HAPUS -->
+                                                    <!-- hapus -->
                                                     <form
                                                         method="POST"
                                                         action="<?= BASEURL ?>/manajer/resep.php?menu_id=<?= $menu_id ?>"
@@ -945,18 +888,15 @@ if ($menu) {
                                                             Hapus
                                                         </button>
                                                     </form>
-
                                                 </div>
                                             </td>
                                         </tr>
 
                                     <?php endforeach; ?>
-
                                     <tr>
                                         <td colspan="3" style="text-align:right;">
                                             <strong>Total HPP:</strong>
                                         </td>
-
                                         <td colspan="2">
                                             <strong>
                                                 Rp <?= number_format($totalHpp, 2, ',', '.') ?>
@@ -965,7 +905,6 @@ if ($menu) {
                                     </tr>
 
                                 <?php else: ?>
-
                                     <tr>
                                         <td colspan="5">
                                             Belum ada bahan dalam resep menu ini.
@@ -973,24 +912,18 @@ if ($menu) {
                                     </tr>
 
                                 <?php endif; ?>
-
                             </tbody>
                         </table>
-
                     </div>
                 </section>
-
             <?php endif; ?>
-
         </div>
 
-        <!-- FOOTER -->
+        <!-- footer -->
         <footer class="manager-footer">
             Kedai Kopi Senja · Dashboard Manajer
         </footer>
-
     </main>
 </div>
-
 </body>
 </html>

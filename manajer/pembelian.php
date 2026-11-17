@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
@@ -188,17 +187,15 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-
 <div class="manager-shell">
 
-    <!-- SIDEBAR -->
+    <!-- sidebar -->
     <aside class="manager-sidebar">
         <div class="manager-side-title">
             <br>KEDAI KOPI SENJA
         </div>
 
         <nav class="manager-nav">
-
             <a href="<?= BASEURL ?>/manajer/index.php">
                 <span class="manager-nav-icon">🏠︎</span>
                 <span>Dashboard</span>
@@ -223,7 +220,6 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
                 <span class="manager-nav-icon">✚</span>
                 <span>Stok Masuk</span>
             </a>
-
         </nav>
 
         <a href="<?= BASEURL ?>/logout.php" class="manager-logout">
@@ -233,10 +229,10 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
 
     </aside>
 
-    <!-- KONTEN UTAMA -->
+    <!-- konten utama -->
     <main class="manager-content">
 
-        <!-- TOPBAR -->
+        <!-- topbar -->
         <div class="manager-topbar">
             <div>
                 <span class="manager-eyebrow">OVERVIEW</span>
@@ -257,7 +253,7 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="container">
 
-            <!-- SAMBUTAN -->
+            <!-- welcome -->
             <div class="manager-welcome">
                 <span class="manager-eyebrow">KEDAI KOPI SENJA</span>
                 <h2>Catat Stok Masuk</h2>
@@ -278,33 +274,26 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             <?php endif; ?>
 
-            <!-- FORM STOK MASUK -->
+            <!-- form stok masuk -->
             <div class="card" style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-
                 <h3>Form Stok Masuk</h3>
-
                 <form action="" method="POST"
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
-
                     <div class="form-group">
                         <label>Pilih Bahan Baku</label>
-
                         <select name="bahan_id" required style="width: 100%; padding: 10px;">
                             <option value="">-- Pilih Bahan --</option>
-
                             <?php foreach ($bahanList as $bahan): ?>
                                 <option value="<?= $bahan['id'] ?>">
                                     <?= htmlspecialchars($bahan['nama_bahan']) ?>
                                     (Stok saat ini: <?= htmlspecialchars($bahan['stok'] . ' ' . $bahan['satuan_dasar']) ?>)
                                 </option>
                             <?php endforeach; ?>
-
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Jumlah Masuk (<?= htmlspecialchars($bahan['satuan_dasar'] ?? 'satuan dasar') ?>)</label>
-
                         <input
                             type="number"
                             step="0.01"
@@ -318,7 +307,6 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="form-group">
                         <label>Tanggal Pembelian</label>
-
                         <input
                             type="date"
                             name="tanggal_pembelian"
@@ -341,14 +329,11 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
                 </form>
             </div>
 
-            <!-- RIWAYAT PEMBELIAN -->
+            <!-- riwayat pembelian -->
             <h3>Riwayat Pembelian Bahan</h3>
             <p class="subtitle">Menampilkan 50 data terbaru.</p>
-
             <div class="table-responsive">
-
                 <table class="data-table">
-
                     <thead>
                         <tr>
                             <th>Tanggal</th>
@@ -359,11 +344,8 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
 
                     <tbody>
-
                         <?php if (count($riwayatList) > 0): ?>
-
                             <?php foreach ($riwayatList as $riwayat): ?>
-
                                 <tr>
                                     <td>
                                         <?= htmlspecialchars($riwayat['tanggal_pembelian']) ?>
@@ -383,11 +365,9 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
                                         <?= htmlspecialchars($riwayat['created_at']) ?>
                                     </td>
                                 </tr>
-
                             <?php endforeach; ?>
 
                         <?php else: ?>
-
                             <tr>
                                 <td colspan="4" class="text-center">
                                     Belum ada riwayat pembelian bahan.
@@ -395,23 +375,16 @@ $riwayatList = $stmtRiwayat->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
 
                         <?php endif; ?>
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
 
-        <!-- FOOTER -->
+        <!-- footer -->
         <footer class="manager-footer">
             Kedai Kopi Senja · Dashboard Manajer
         </footer>
-
     </main>
-
 </div>
-
 </body>
 </html>

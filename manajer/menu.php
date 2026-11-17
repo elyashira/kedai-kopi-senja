@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/../config/app.php';
 require_once __DIR__ . '/../config/database.php';
@@ -28,7 +27,7 @@ foreach ($kategoriList as $item) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aksi = $_POST['aksi'] ?? '';
 
-    // TAMBAH MENU
+    // Tambah menu baru
     if ($aksi === 'tambah_menu') {
         $namaMenu = trim($_POST['nama_menu'] ?? '');
         $kategori = trim($_POST['kategori'] ?? '');
@@ -277,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-    // UBAH STATUS MENU
+    // Ubah status menu
     } elseif ($aksi === 'toggle_status') {
         $menuId = intval($_POST['menu_id'] ?? 0);
 
@@ -373,10 +372,10 @@ $menuList = $stmtMenu->fetchAll();
 
     </aside>
 
-    <!-- KONTEN UTAMA -->
+    <!-- konten utama -->
     <main class="manager-content">
 
-        <!-- TOPBAR -->
+        <!-- topbar -->
         <div class="manager-topbar">
             <div>
                 <span class="manager-eyebrow">OVERVIEW</span>
@@ -397,7 +396,7 @@ $menuList = $stmtMenu->fetchAll();
 
         <div class="container">
 
-            <!-- SAMBUTAN -->
+            <!-- welcome -->
             <div class="manager-welcome">
                 <span class="manager-eyebrow">KEDAI KOPI SENJA</span>
                 <h2>Kelola Menu dan Resep</h2>
@@ -418,16 +417,12 @@ $menuList = $stmtMenu->fetchAll();
                 </div>
             <?php endif; ?>
 
-            <!-- FORM TAMBAH MENU -->
+            <!-- form tambah menu -->
             <div class="card" style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-
                 <h3>Tambah Menu Baru</h3>
-
                 <form action="" method="POST"
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
-
                     <input type="hidden" name="aksi" value="tambah_menu">
-
                     <div class="form-group">
                         <label>Nama Menu</label>
                         <input
@@ -474,20 +469,13 @@ $menuList = $stmtMenu->fetchAll();
                 </form>
             </div>
 
-            <!-- FORM IMPORT MENU CSV -->
+            <!-- form import menu CSV -->
             <div class="card" style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-
                 <h3>Import Menu dari CSV</h3>
-
-                <p>
-                    Masukkan daftar menu melalui file CSV. Menu yang berhasil diimport akan berstatus Aktif.
-                </p>
-
+                <p>Masukkan daftar menu melalui file CSV. Menu yang berhasil diimport akan berstatus Aktif.</p>
                 <form action="" method="POST" enctype="multipart/form-data"
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
-
                     <input type="hidden" name="aksi" value="import_csv">
-
                     <div class="form-group">
                         <label>Pilih File CSV</label>
                         <input
@@ -516,13 +504,10 @@ $menuList = $stmtMenu->fetchAll();
                 </small>
             </div>
 
-            <!-- TABEL MENU -->
+            <!-- tabel menu -->
             <h3>Daftar Menu, HPP, & Margin</h3>
-
             <div class="table-responsive">
-
                 <table class="data-table">
-
                     <thead>
                         <tr>
                             <th>Nama Menu</th>
@@ -536,11 +521,8 @@ $menuList = $stmtMenu->fetchAll();
                     </thead>
 
                     <tbody>
-
                         <?php if (count($menuList) > 0): ?>
-
                             <?php foreach ($menuList as $menu): ?>
-
                                 <?php
                                     // Hitung HPP dan margin
                                     $stmtR = $pdo->prepare("
@@ -566,7 +548,6 @@ $menuList = $stmtMenu->fetchAll();
                                 ?>
 
                                 <tr>
-
                                     <td>
                                         <strong>
                                             <?= htmlspecialchars($menu['nama_menu']) ?>
@@ -604,39 +585,29 @@ $menuList = $stmtMenu->fetchAll();
 
                                     <td>
                                         <div style="display: flex; gap: 5px; align-items: center;">
-
                                             <a
                                                 href="<?= BASEURL ?>/manajer/resep.php?menu_id=<?= $menu['id'] ?>"
                                                 class="btn-sm btn-info"
                                             >
                                                 Atur Resep
                                             </a>
-
                                             <form action="" method="POST" style="display: inline;">
-
                                                 <input type="hidden" name="aksi" value="toggle_status">
-
                                                 <input
                                                     type="hidden"
                                                     name="menu_id"
                                                     value="<?= $menu['id'] ?>"
                                                 >
-
                                                 <button type="submit" class="btn-sm <?= $menu['status'] === 'Aktif' ? 'btn-danger' : 'btn-success' ?>">
                                                     <?= $menu['status'] === 'Aktif' ? 'Nonaktifkan' : 'Aktifkan' ?>
                                                 </button>
-
                                             </form>
-
                                         </div>
                                     </td>
-
                                 </tr>
-
                             <?php endforeach; ?>
 
                         <?php else: ?>
-
                             <tr>
                                 <td colspan="7" class="text-center">
                                     Belum ada menu yang terdaftar.
@@ -644,23 +615,16 @@ $menuList = $stmtMenu->fetchAll();
                             </tr>
 
                         <?php endif; ?>
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
 
-        <!-- FOOTER -->
+        <!-- footer -->
         <footer class="manager-footer">
             Kedai Kopi Senja · Dashboard Manajer
         </footer>
-
     </main>
-
 </div>
-
 </body>
 </html>
