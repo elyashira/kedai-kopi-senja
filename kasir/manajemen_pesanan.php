@@ -126,13 +126,7 @@ $pesanan_list = $stmtList->fetchAll();
     <!-- konten -->
     <main class="kasir-main" style="grid-template-columns: minmax(0, 1fr);">
         <section class="kasir-menu">
-            <div class="kasir-menu-header">
-                <div>
-                    <h2>Manajemen Pesanan</h2>
-                    <p>Kelola dan pantau status pesanan pelanggan.</p>
-                </div>
-            </div>
-
+            
             <!-- notifikasi -->
             <?php if (!empty($error)): ?>
                 <div class="alert-error">
@@ -209,6 +203,7 @@ $pesanan_list = $stmtList->fetchAll();
                                                 <input type="hidden"
                                                        name="pesanan_id"
                                                        value="<?= $p['id'] ?>">
+
                                                 <?php if ($p['status'] === 'Baru'): ?>
                                                     <button type="submit"
                                                             name="aksi"
@@ -240,6 +235,15 @@ $pesanan_list = $stmtList->fetchAll();
                                                 <?php else: ?>
                                                     <span style="color:var(--text-muted);"> - </span>
                                                 <?php endif; ?>
+
+                                                <!-- Tombol Struk -->
+                                                <a href="struk_pesanan.php?id=<?= (int)$p['id'] ?>"
+                                                   target="_blank"
+                                                   class="btn-secondary"
+                                                   style="padding:7px 11px; font-size:11px; text-decoration:none;">
+                                                    Struk
+                                                </a>
+
                                             </form>
                                         </td>
                                     </tr>
@@ -267,7 +271,7 @@ $pesanan_list = $stmtList->fetchAll();
         </a>
 
         <a href="<?= BASEURL ?>/kasir/manajemen_pesanan.php"
-           class="bottom-nav-item active">
+           class="bottom-nav-item">
             <span>🗒</span>
             <small>Pesanan</small>
         </a>

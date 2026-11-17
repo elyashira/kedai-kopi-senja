@@ -11,7 +11,7 @@
     --bg-image: #f1e5d1;
 
     --primary: #426171;
-    --primary-hover: #426171;
+    --primary-hover: #263a45;
 
     --secondary: #b79858;
     --blue: #88b8ce;
@@ -206,7 +206,7 @@ a {
 }
 
 .login-container .btn-primary:hover {
-    background: #743014;
+    background: #263a45;
     transform: translateY(-2px);
 
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);

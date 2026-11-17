@@ -444,7 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </a>
 
         <a href="<?= BASEURL ?>/kasir/manajemen_pesanan.php"
-           class="bottom-nav-item active">
+           class="bottom-nav-item">
             <span>🗒</span>
             <small>Pesanan</small>
         </a>
